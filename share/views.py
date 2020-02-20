@@ -9,3 +9,14 @@ class HomeView(View):
         return render(request, "base.html", {})
         
     
+class DisplayView(View):
+
+    def get(self, request, code):
+        u = Upload.ojects.filter(code=str(code))
+        if u:
+            for i in u:
+                i.DownloadDocount += 1
+                i.save()
+            
+        return render(request, 'content.html', {'content':u})
+        

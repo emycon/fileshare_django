@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from share.views import HomeView
+from share.views import HomeView, DisplayView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomeView.as_view(), name='home'),
+    path('s/(?P<code>\d)/', DisplayView.as_view()),
 ]
